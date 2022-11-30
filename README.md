@@ -23,6 +23,7 @@ student {First Name, Last Name , Age, Bench Number, Subjects}
     - display his grades for each subject
 
 -> The original project didn't work on all of the machines so i merged the classes and put them in the main.cpp
+
    i know this is not the best practice but it's for testing only 
 
 -> to view the project with class headers seperated go to /classes folder or go to classes branch -> https://github.com/AbdAlRahmanGad/SchoolManagemetSystem/tree/classes
