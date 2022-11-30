@@ -19,6 +19,7 @@ private:
 public:
 //   SubjectController():subjects(){};
      void   setSubjects(int num);
+
     vector<SubjectDefinition> getSubjects();
    void printSubjects();
     ///   modify

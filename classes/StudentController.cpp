@@ -103,7 +103,7 @@ void StudentController::ModifyStudent(int benchN) {
 //                (*it).;
 //                        vector<SubjectData> subData;
 
-            cout << "enter the grade for "<<endl;
+//            cout << "enter the grade for "<<endl;
             for (int j = 0; j < (*it).getSubjects().size(); ++j) {
                 cout << "enter the student grade for "<< (*it).getSubjects().at(j).getSubDefinition().getName()<<"  ";
                 int grade;

@@ -86,7 +86,7 @@ void Student::SetGradeStudentController(int G,string N) {
              << "BenchNumber "<< BenchNumber << endl;
         for (auto i : Subjects) {
             // i.subject.name
-            cout <<  i.getGrade()<< endl;
+            cout << i.getSubDefinition().getName() <<" : "<< i.getGrade()<< endl;
 
         }
 

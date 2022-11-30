@@ -57,4 +57,8 @@ void SubjectDefinition::PrintReport() {
             <<  "SuccessGrade :" << SuccessGrade << endl;
 }
 
+SubjectDefinition::SubjectDefinition() {
+
+}
+
 
