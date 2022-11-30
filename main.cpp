@@ -626,23 +626,23 @@ vector<Student> studentController(vector<SubjectDefinition>  &All,StudentControl
 
 int main() {
     std::cout << "Hello, sir " << std::endl<< " enter 1 if you are a student or 2 if you are an admin ,-1 to quit ";
-    int option;
+    string option;
     cin >> option;
     SubjectController subjectController1;
     StudentController studentController1;
 
     vector<SubjectDefinition> AllSubjects;
     vector<Student> studentsResults;
-    while(option != -1){
-        if(option == 1 ){
+    while(option != "-1"){
+        if(option == "1" ){
             //function student
             if(studentsResults.empty()){
-                cout << "please insert students \n enter 1 if you are a student or 2 if you are a admin ,-1 to quit";
+                cout << "please insert students As an admin  \n enter 2 please ";
                 cin >> option;
                 continue;
             }
             student(studentsResults);
-        }else if (option == 2 ){
+        }else if (option == "2" ){
             cout << " enter 0 if you are subject controller else for student Controller  " << endl;
             int adminOption;
             cin >> adminOption;
