@@ -27,12 +27,10 @@ void SubjectController::setSubjects(int num) {
         subjects.push_back(s1);
     }
 }
-
 vector<SubjectDefinition> SubjectController::getSubjects() {
     return subjects;
 
 }
-
 void SubjectController::printSubjects() {
     if(subjects.empty()){
         cout << "no subjects Found "<<endl << endl;
@@ -55,7 +53,6 @@ void SubjectController::deleteSubjects(string name) {
 }
 
 void SubjectController::modifySubjects(string name) {
-
     vector<SubjectDefinition>::iterator  it = subjects.begin();
     for (int i=0;i<subjects.size();i++) {
         if((*it).getName()==name){
@@ -79,7 +76,6 @@ void SubjectController::modifySubjects(string name) {
     }
     cout << "name not matched \n";
 }
-
 string SubjectController::setGrade(int type, int min, int max) {
     string grade;
     while(cin >> grade) {

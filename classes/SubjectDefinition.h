@@ -21,23 +21,14 @@ public:
     MaxGrade(Max),MinGrade(Min),SuccessGrade(sucGrade){}
     SubjectDefinition();
     string getName() const;
-
     void setName(string  name);
-
     const string &getDescription() const;
-
     void setDescription(const string &description);
-
     int getMaxGrade() const;
-
     void setMaxGrade(int maxGrade);
-
     int getMinGrade() const;
-
     void setMinGrade(int minGrade);
-
     int getSuccessGrade() const;
-
     void setSuccessGrade(int successGrade);
     void  PrintReport();
 };

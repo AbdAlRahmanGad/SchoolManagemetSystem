@@ -13,12 +13,10 @@ using namespace std;
 
 //-FirstName
 //-LastName
-//-Age
-//-PhoneNumber
 //-Subjects[] (SubjectData)
-//=Setters/Getters
-//=CalculatePercentage
-//         =PrintReport
+//-Setters/Getters
+//-CalculatePercentage
+//-PrintReport
 const string &Student::getFirstName() const {
     return FirstName;
 }
@@ -26,10 +24,6 @@ const string &Student::getFirstName() const {
 const string &Student::getLastName() const {
     return LastName;
 }
-
-//int Student::getAge() const {
-//    return Age;
-//}
 
 int Student::getBenchNumber() const {
     return BenchNumber;
@@ -46,11 +40,6 @@ void Student::setFirstName(const string &firstName) {
 void Student::setLastName(const string &lastName) {
     LastName = lastName;
 }
-
-//void Student::setAge(int age) {
-//    Age = age;
-//}
-
 void Student::setBenchNumber(int BenchNumber) {
     this->BenchNumber = BenchNumber;
 }
@@ -62,7 +51,6 @@ void Student::setSubjects(const vector<SubjectData> &subjects) {
 Student::Student(string first, string last, int benchNum, vector<SubjectData> Subjects) {
     setFirstName(first);
     setLastName(last);
-//    setAge(age);
     setBenchNumber(benchNum);
     setSubjects(Subjects);
 }
@@ -70,7 +58,6 @@ Student::Student(string first, string last, int benchNum, vector<SubjectData> Su
 void Student::SetGradeStudentController(int G,string N) {
     vector<SubjectData>::iterator  it = Subjects.begin();
     for (int i=0;i<Subjects.size();i++) {
-
         if((*it).getSubDefinition().getName()==N){
             (*it).setGrade(G);
             return;
@@ -82,12 +69,9 @@ void Student::SetGradeStudentController(int G,string N) {
     void Student::printReport(){
         cout << "first name "<< FirstName << endl
              << "Last name "<< LastName << endl
-//             << "Age "<< Age << endl
              << "BenchNumber "<< BenchNumber << endl;
         for (auto i : Subjects) {
-            // i.subject.name
             cout << i.getSubDefinition().getName() <<" : "<< i.getGrade()<< endl;
-
         }
 
     }
@@ -95,7 +79,6 @@ void Student::SetGradeStudentController(int G,string N) {
 void Student::CalculatePercentage() {
     int percent=0;
     int max=0;
-
     for (auto i : Subjects) {
         // i.subject.name
         percent+=  i.getGrade();

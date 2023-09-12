@@ -8,38 +8,12 @@
 
 #include <iostream>
 #include <vector>
-
 using namespace std;
 #include "Student.h"
 #include "SubjectData.h"
 #include "SubjectController.h"
 #include "StudentController.h"
 #include "SubjectDefinition.h"
-
-void student(vector <Student> studentsResults){
-    cout << " enter your  bench number  " << endl;
-    int x =1 ;
-    while (x) {
-        int bench;
-        cin >> bench;
-///    ///  Read from file file file
-        int flag = 1;
-        for (int i = 0; i < studentsResults.size(); ++i) {
-            if (studentsResults[i].getBenchNumber() == bench) {
-                studentsResults[i].printReport();
-                flag = 0;
-            }
-        }
-//        Student result ;
-//    ///
-//    result.setSubjects(allSubjects);
-//    result.printReport();
-        if (flag)
-            cout << " not found , " << endl;
-            cout << " enter any number to try again or 0 to quit  ";
-        cin >> x;
-    }
-}
 bool isValidNumber(string s){
     bool valid = true;
     for (int i = 0; i < s.size(); ++i) {
@@ -50,6 +24,28 @@ bool isValidNumber(string s){
     }
     if(valid)return true;
     else return false;
+}
+
+void student(vector <Student> studentsResults){
+    cout << "Enter your bench number : ";
+        string bench;
+            while(cin >> bench){
+                bool valid = isValidNumber(bench);
+                if(!valid){
+                    cout << "\nPlease enter a valid number : ";
+                }else{
+                    break;
+                }
+            }
+        int flag = 1;
+        for (int i = 0; i < studentsResults.size(); ++i) {
+            if (studentsResults[i].getBenchNumber() == stoi(bench)) {
+                studentsResults[i].printReport();
+                flag = 0;
+            }
+        }
+        if (flag)
+            cout << "not found \n" << endl;
 }
 
 vector<SubjectDefinition>  subjectController(    SubjectController &subjectController1){
@@ -72,7 +68,6 @@ vector<SubjectDefinition>  subjectController(    SubjectController &subjectContr
                break;
            }
        }
-
         subjectController1.setSubjects(stoi(x));
     } else if (chose == "2") {
         cout << "enter name of subjects to modify ";
@@ -92,8 +87,7 @@ vector<SubjectDefinition>  subjectController(    SubjectController &subjectContr
 }
   return  subjectController1.getSubjects();
 }
-vector<Student> studentController(vector<SubjectDefinition>  &All,StudentController &studentController1
-){
+vector<Student> studentController(vector<SubjectDefinition>  &All,StudentController &studentController1){
     if(All.empty()){
         cout << "Add subjects first \n";
         vector<Student> s;
@@ -150,7 +144,6 @@ while(chose != "-1") {
     }
 }
     vector<Student> resultedStudets(studentController1.getStudents());
-
     return resultedStudets;
 
 }

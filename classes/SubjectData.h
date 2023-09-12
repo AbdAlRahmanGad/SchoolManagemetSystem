@@ -8,7 +8,6 @@
 
 //SubjectData
 //-SubjectDefinition ___Setter/Getter
-
 // constructior
 // Print
 
@@ -17,19 +16,12 @@ class SubjectData {
 private:
     SubjectDefinition subDefinition;
     int grade;
-
 public:
     const SubjectDefinition &getSubDefinition() const;
-
     void setSubDefinition(const SubjectDefinition &subDefinition);
-
     SubjectData(int g, SubjectDefinition subDef);
-
     int getGrade() const;
     void setGrade(int grade);
-
-
-
 };
 
 
