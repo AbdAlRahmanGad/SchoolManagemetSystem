@@ -25,7 +25,7 @@ private:
     void SetGradeStudentController(int G,string N);
 
 public:
-    Student();
+    Student(){};
     Student(string first, string last, int age , int benchNum,vector<SubjectData>subjects);
     const string &getFirstName() const;
 

@@ -51,7 +51,7 @@ void SubjectDefinition::setSuccessGrade(int successGrade) {
 //-SuccessGrade
 void SubjectDefinition::PrintReport() {
     cout << "subject name :" << Name << endl
-         <<  "Description :" << Description << endl
+//         <<  "Description :" << Description << endl
             <<  "MaxGrade :" << MaxGrade << endl
             <<  "MinGrade :" << MinGrade << endl
             <<  "SuccessGrade :" << SuccessGrade << endl;

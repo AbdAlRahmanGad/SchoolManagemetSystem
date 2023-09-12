@@ -5,7 +5,6 @@
 #include "SubjectController.h"
 
 #include "SubjectDefinition.h"
-
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -14,19 +13,47 @@
 
 using namespace std;
 
+string setGrade(int type, int min,int max){
+    string grade;
+    while(cin >> grade) {
+        bool valid = true;
+        for (int i = 0; i < grade.size(); ++i) {
+            if (isdigit(grade[i]) == false) {
+                valid = false;
+                break;
+            }
+        }
+        if (!valid) {
+            cout << "\nPlease enter a valid number\n";
+        }
+        else if (stoi(grade) > max && type == 1) {
+            cout << "\nmin grade can't be greater than max\n";
+        }
+        else if ((stoi(grade) < min || stoi(grade) > max) && type == 2){
+            cout << "\nSuccess grade must be between min and max grade\n";
+        }
+        else{
+            break;
+        }
+    }
+    return grade;
+}
+
 void SubjectController::setSubjects(int num) {
     for (int i = 0; i < num; ++i) {
         string name;
-        int max , min,sucGrade;
+        string max , min, sucGrade;
+
         cout << "enter name of subject : ";
         cin >> name;
         cout << "enter Max grade  : ";
-        cin >> max;
+        max = setGrade(0,0,0);
         cout << "enter Min grade  : ";
-        cin >> min;
+        min = setGrade(1,-1, stoi(max));
         cout << "enter Success grade  : ";
-        cin >> sucGrade;
-        SubjectDefinition s1(name, max, min,sucGrade );
+        sucGrade = setGrade(2, stoi(min), stoi(max));
+        cout << "\n";
+        SubjectDefinition s1(name, stoi(max), stoi(min), stoi(sucGrade) );
         subjects.push_back(s1);
 
     }
@@ -49,23 +76,23 @@ void SubjectController::printSubjects() {
     }
 }
 
-void SubjectController::addSubjects(int num) {
-    for (int i = 0; i < num; ++i) {
-        string name;
-        int max , min,sucGrade;
-        cout << "enter name of subject : ";
-        cin >> name;
-        cout << "enter Max grade  : ";
-        cin >> max;
-        cout << "enter Min grade  : ";
-        cin >> min;
-        cout << "enter Success grade  : ";
-        cin >> sucGrade;
-        SubjectDefinition s1(name, max, min,sucGrade );
-        subjects.push_back(s1);
-
-    }
-}
+//void SubjectController::addSubjects(int num) {
+//    for (int i = 0; i < num; ++i) {
+//        string name;
+//        int max , min,sucGrade;
+//        cout << "enter name of subject : ";
+//        cin >> name;
+//        cout << "enter Max grade  : ";
+//        cin >> max;
+//        cout << "enter Min grade  : ";
+//        cin >> min;
+//        cout << "enter Success grade  : ";
+//        cin >> sucGrade;
+//        SubjectDefinition s1(name, max, min,sucGrade );
+//        subjects.push_back(s1);
+//
+//    }
+//}
 
 void SubjectController::deleteSubjects(string name) {
     vector<SubjectDefinition>::iterator  it = subjects.begin();
@@ -87,21 +114,19 @@ void SubjectController::modifySubjects(string name) {
 
         if((*it).getName()==name){
             string name;
-            int max , min,sucGrade;
+            string max , min,sucGrade;
             cout << "enter name of subject : ";
             cin >> name;
             (*it).setName(name);
             cout << "enter Max grade  : ";
-            cin >> max;
-            (*it).setMaxGrade(max);
-
+            max = setGrade(0,0,0);
             cout << "enter Min grade  : ";
-            cin >> min;
-            (*it).setMinGrade(min);
-
+            min = setGrade(1,-1, stoi(max));
             cout << "enter Success grade  : ";
-            cin >> sucGrade;
-            (*it).setSuccessGrade(sucGrade);
+            sucGrade = setGrade(2, stoi(min), stoi(max));
+            (*it).setMaxGrade(stoi(max));
+            (*it).setMinGrade(stoi(min));
+            (*it).setSuccessGrade(stoi(sucGrade));
             return;
         }
         it++;

@@ -16,6 +16,7 @@ using namespace std;
 class SubjectController {
 private:
     vector<SubjectDefinition> subjects;
+
 public:
 //   SubjectController():subjects(){};
      void   setSubjects(int num);
@@ -23,7 +24,7 @@ public:
     vector<SubjectDefinition> getSubjects();
    void printSubjects();
     ///   modify
-    void   addSubjects(int num);
+//    void   addSubjects(int num);
     void   deleteSubjects(string name);
     void   modifySubjects(string name);
 };

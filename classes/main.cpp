@@ -48,33 +48,47 @@ vector<SubjectDefinition>  subjectController(    SubjectController &subjectContr
 //    cin >> numOfSub;
 //    SubjectController subjectController1;
 //    subjectController1.setSubjects(numOfSub);
-    int chose = 0;
-
-while(chose!=-1) {
+    string chose = "";
+while(chose!="-1") {
     cout << "enter 1 to add new subject " << endl
          << "enter 2 to modify a subject " << endl
          << "enter 3 to delete a subject " << endl
          << "enter 4 to print  a subjects " << endl
          << "enter -1 to quit " << endl;
-
     cin >> chose;
-    if (chose == 1) {
+    if (chose == "1") {
         cout << "enter num of subjects to add ";
-        int x;
+        string x;
         cin >> x;
-        subjectController1.addSubjects(x);
-    } else if (chose == 2) {
+        bool valid = true;
+        for (int i = 0; i < x.size(); ++i) {
+            if(isdigit(x[i]) == false){
+                valid = false;
+                break;
+            }
+        }
+        if(!valid){
+            cout << "\nPlease enter a valid number\n\n";
+            continue;
+        }
+
+//        subjectController1.addSubjects(stoi(x));
+        subjectController1.setSubjects(stoi(x));
+
+    } else if (chose == "2") {
         cout << "enter name of subjects to modify ";
         string x;
         cin >> x;
         subjectController1.modifySubjects(x);
-    } else if (chose == 3) {
+    } else if (chose == "3") {
         cout << "enter name of subjects to delete ";
         string x;
         cin >> x;
         subjectController1.deleteSubjects(x);
-    } else if (chose == 4) {
+    } else if (chose == "4") {
         subjectController1.printSubjects();
+    }else{
+        cout << "\nPlease enter a valid option\n\n";
     }
 }
   return  subjectController1.getSubjects();
@@ -129,7 +143,7 @@ while(chose != -1) {
 
 }
 int main() {
-    std::cout << "Hello, sir " << std::endl<< " enter 1 if you are a student or 2 if you are an admin ,-1 to quit ";
+    std::cout << "Hello, sir " << std::endl<< "Enter \n 1 - if you are a student \n 2 - if you are an admin \n-1 - to quit ";
     string option;
     cin >> option;
     SubjectController subjectController1;
@@ -141,26 +155,30 @@ int main() {
         if(option == "1" ){
             //function student
             if(studentsResults.empty()){
-                cout << "please insert students As an admin  \n enter 2 please ";
+                cout << "\nplease insert students first As an admin  \n\nenter 2 please if you are an admin or -1 to quit: ";
                 cin >> option;
                 continue;
             }
             student(studentsResults);
         }else if (option == "2" ){
-            cout << " enter 0 if you are subject controller else for student Controller  " << endl;
-            int adminOption;
+            cout << "\n Enter\n 1 if you are a student controller \n 2 if you are a subject Controller " << endl;
+            string adminOption;
             cin >> adminOption;
-            if(adminOption){
+            if(adminOption == "1"){
 
                 studentsResults =   studentController(AllSubjects ,studentController1 );
 
-            }else{
+            }else if(adminOption == "2"){
 
                 AllSubjects =  subjectController(subjectController1);
 
+            }else{
+                cout << "\nPlease enter a valid option\n\n";
             }
+        }else {
+            cout << "\nPlease enter a valid option\n\n";
         }
-        std::cout << "Hello, sir " << std::endl<< " enter 1 if you are an student or 2 if you are an admin ,-1 to quit ";
+        cout << "Enter \n 1 - if you are a student \n 2 - if you are an admin \n-1 - to quit ";
         cin >> option;
     }
     return 0;
