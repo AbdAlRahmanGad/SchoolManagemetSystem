@@ -27,9 +27,9 @@ const string &Student::getLastName() const {
     return LastName;
 }
 
-int Student::getAge() const {
-    return Age;
-}
+//int Student::getAge() const {
+//    return Age;
+//}
 
 int Student::getBenchNumber() const {
     return BenchNumber;
@@ -47,9 +47,9 @@ void Student::setLastName(const string &lastName) {
     LastName = lastName;
 }
 
-void Student::setAge(int age) {
-    Age = age;
-}
+//void Student::setAge(int age) {
+//    Age = age;
+//}
 
 void Student::setBenchNumber(int BenchNumber) {
     this->BenchNumber = BenchNumber;
@@ -59,10 +59,10 @@ void Student::setSubjects(const vector<SubjectData> &subjects) {
     Subjects = subjects;
 }
 
-Student::Student(string first, string last, int age, int benchNum, vector<SubjectData> Subjects) {
+Student::Student(string first, string last, int benchNum, vector<SubjectData> Subjects) {
     setFirstName(first);
     setLastName(last);
-    setAge(age);
+//    setAge(age);
     setBenchNumber(benchNum);
     setSubjects(Subjects);
 }
@@ -82,7 +82,7 @@ void Student::SetGradeStudentController(int G,string N) {
     void Student::printReport(){
         cout << "first name "<< FirstName << endl
              << "Last name "<< LastName << endl
-             << "Age "<< Age << endl
+//             << "Age "<< Age << endl
              << "BenchNumber "<< BenchNumber << endl;
         for (auto i : Subjects) {
             // i.subject.name

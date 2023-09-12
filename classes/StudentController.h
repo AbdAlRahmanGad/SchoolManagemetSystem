@@ -19,14 +19,10 @@ using namespace std;
 class StudentController {
 private:
     vector<Student> students;
-//    vector<SubjectData> subjects;
 public:
     const vector<Student> &getStudents() ;
 
     void setStudents1(const vector<Student> &students) ;
-
-
-
     void setStudents(int num, vector<SubjectDefinition> subsDif);
     void addStudents(int num,vector<SubjectDefinition> subsDif);
     void DeleteStudent(int benchN);

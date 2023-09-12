@@ -19,19 +19,19 @@ class Student {
 private:
     string FirstName;
     string LastName;
-    int Age;
+//    int Age;
     int BenchNumber;
     vector<SubjectData>Subjects;
     void SetGradeStudentController(int G,string N);
 
 public:
     Student(){};
-    Student(string first, string last, int age , int benchNum,vector<SubjectData>subjects);
+    Student(string first, string last , int benchNum,vector<SubjectData>subjects);
     const string &getFirstName() const;
 
     const string &getLastName() const;
 
-    int getAge() const;
+//    int getAge() const;
 
     int getBenchNumber() const;
 
@@ -41,7 +41,7 @@ public:
 
     void setLastName(const string &lastName);
 
-    void setAge(int age);
+//    void setAge(int age);
 
     void setBenchNumber(int phoneNumber);
 

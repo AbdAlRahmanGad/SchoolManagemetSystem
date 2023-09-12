@@ -23,10 +23,21 @@ void StudentController::setStudents1(const vector<Student> &students) {
     StudentController::students = students;
 
 }
+bool isValidNumber(string s){
+    bool valid = true;
+    for (int i = 0; i < s.size(); ++i) {
+        if(isdigit(s[i]) == false){
+            valid = false;
+            break;
+        }
+    }
 
+    if(!valid)return false;
+    else return true;
+}
 void StudentController::setStudents(int num, vector<SubjectDefinition> subsDif) {
     for (int i = 0; i < num; ++i) {
-        int age,benchNumber;
+        string age,benchNumber;
         string FirstName , LastName;
         cout << "enter first name of student : ";
         cin >> FirstName;
@@ -45,7 +56,7 @@ void StudentController::setStudents(int num, vector<SubjectDefinition> subsDif) 
             SubjectData s10(grade , subsDif[j]);
             subData.push_back(s10);
         }
-        Student s1(FirstName,LastName,age ,benchNumber,subData);
+        Student s1(FirstName,LastName,stoi(age) ,stoi(benchNumber),subData);
 
         students.push_back(s1);
     }
@@ -53,26 +64,50 @@ void StudentController::setStudents(int num, vector<SubjectDefinition> subsDif) 
 
 void StudentController::addStudents(int num, vector<SubjectDefinition> subsDif) {
     for (int i = 0; i < num; ++i) {
-        int age,benchNumber;
+        string benchNumber;
         string FirstName , LastName;
         cout << "enter first name of student : ";
         cin >> FirstName;
         cout << "enter last name of student : ";
         cin >> LastName;
-        cout << "enter Age  : ";
-        cin >> age;
+//        cout << "enter Age  : ";
+//        while(cin >> age){
+//            if(!isValidNumber(age)){
+//                cout << "\nPlease enter a valid number : ";
+//            }else if ( stoi(age) < minGrade || stoi(age) > maxGrade ){
+//                cout << "\nPlease enter a number between " << minGrade << " and " << maxGrade <<" : ";
+//            }else {
+//                break;
+//            }
+//        }
         cout << "enter bench Number : ";
-        cin >> benchNumber;
+        while(cin >> benchNumber){
+            if(!isValidNumber(benchNumber)){
+                cout << "\nPlease enter a valid number : ";
+            }else {
+                break;
+            }
+        }
         vector<SubjectData> subData;
         cout << "enter the grade for "<<endl;
         for (int j = 0; j < subsDif.size(); ++j) {
             cout << "enter the student grade for "<<subsDif[j].getName()<<"  ";
-            int grade;
-            cin >> grade;
-            SubjectData s10(grade , subsDif[j]);
+            int maxGrade = subsDif[j].getMaxGrade();
+            int minGrade = subsDif[j].getMinGrade();
+            string grade;
+            while(cin >> grade){
+                if(!isValidNumber(grade)){
+                    cout << "\nPlease enter a valid number : ";
+                }else if ( stoi(grade) < minGrade || stoi(grade) > maxGrade ){
+                    cout << "\nPlease enter a number between " << minGrade << " and " << maxGrade <<" : ";
+                }else {
+                    break;
+                }
+            }
+            SubjectData s10(stoi(grade) , subsDif[j]);
             subData.push_back(s10);
         }
-        Student s1(FirstName,LastName,age ,benchNumber,subData);
+        Student s1(FirstName,LastName ,stoi(benchNumber),subData);
 
         students.push_back(s1);
     }
@@ -85,10 +120,11 @@ void StudentController::DeleteStudent(int benchN){
 
         if((*it).getBenchNumber()==benchN){
             students.erase(it);
+            return;
         }
         it++;
     }
-    cout << "not Found ";
+    cout << "\nnot Found \n";
 }
 
 void StudentController::ModifyStudent(int benchN) {
@@ -99,24 +135,27 @@ void StudentController::ModifyStudent(int benchN) {
 
         if((*it).getBenchNumber()==benchN){
             cout << (*it).getFirstName()<<" "<<(*it).getLastName();
-//               cout <<endl << "press 1 to edit 0 to skip  "<<endl;
-//                (*it).;
-//                        vector<SubjectData> subData;
-
-//            cout << "enter the grade for "<<endl;
             for (int j = 0; j < (*it).getSubjects().size(); ++j) {
                 cout << "enter the student grade for "<< (*it).getSubjects().at(j).getSubDefinition().getName()<<"  ";
-                int grade;
-                cin >> grade;
-                (*it).SetGradeStudentController(grade,(*it).getSubjects().at(j).getSubDefinition().getName());
-
-//                    (*it).getSubjects().at(j).
+                string grade;
+                int maxGrade = (*it).getSubjects().at(j).getSubDefinition().getMaxGrade();
+                int minGrade = (*it).getSubjects().at(j).getSubDefinition().getMinGrade();
+                while(cin >> grade){
+                    if(!isValidNumber(grade)){
+                        cout << "\nPlease enter a valid number : ";
+                    }else if ( stoi(grade) < minGrade || stoi(grade) > maxGrade ){
+                        cout << "\nPlease enter a number between " << minGrade << " and " << maxGrade <<" : ";
+                    }else {
+                        break;
+                    }
+                }
+                (*it).SetGradeStudentController(stoi(grade),(*it).getSubjects().at(j).getSubDefinition().getName());
             }
             return;
         }
         it++;
     }
-    cout << "not Found ";
+    cout << "\nnot Found \n";
 }
 
 void StudentController::PrintStuWGrade() {

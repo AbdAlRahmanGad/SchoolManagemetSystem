@@ -40,16 +40,21 @@ void student(vector <Student> studentsResults){
         cin >> x;
     }
 }
+bool isValidNumber(string s){
+    bool valid = true;
+    for (int i = 0; i < s.size(); ++i) {
+        if(isdigit(s[i]) == false){
+            valid = false;
+            break;
+        }
+    }
+    if(valid)return true;
+    else return false;
+}
 
 vector<SubjectDefinition>  subjectController(    SubjectController &subjectController1){
-//    vector<subject> allSubjects  ;
-//    cout << "enter the number of subjects ";
-//    int numOfSub;
-//    cin >> numOfSub;
-//    SubjectController subjectController1;
-//    subjectController1.setSubjects(numOfSub);
     string chose = "";
-while(chose!="-1") {
+    while(chose!="-1") {
     cout << "enter 1 to add new subject " << endl
          << "enter 2 to modify a subject " << endl
          << "enter 3 to delete a subject " << endl
@@ -59,22 +64,16 @@ while(chose!="-1") {
     if (chose == "1") {
         cout << "enter num of subjects to add ";
         string x;
-        cin >> x;
-        bool valid = true;
-        for (int i = 0; i < x.size(); ++i) {
-            if(isdigit(x[i]) == false){
-                valid = false;
-                break;
-            }
-        }
-        if(!valid){
-            cout << "\nPlease enter a valid number\n\n";
-            continue;
-        }
+       while(cin >> x){
+           bool valid = isValidNumber(x);
+           if(!valid){
+               cout << "\nPlease enter a valid number : ";
+           }else{
+               break;
+           }
+       }
 
-//        subjectController1.addSubjects(stoi(x));
         subjectController1.setSubjects(stoi(x));
-
     } else if (chose == "2") {
         cout << "enter name of subjects to modify ";
         string x;
@@ -88,53 +87,66 @@ while(chose!="-1") {
     } else if (chose == "4") {
         subjectController1.printSubjects();
     }else{
-        cout << "\nPlease enter a valid option\n\n";
+        cout << "\nPlease enter a valid number : ";
     }
 }
   return  subjectController1.getSubjects();
-
-
 }
 vector<Student> studentController(vector<SubjectDefinition>  &All,StudentController &studentController1
 ){
     if(All.empty()){
-        cout << " add subjects first ";
+        cout << "Add subjects first \n";
         vector<Student> s;
         return  s;
     }
-
-//    cout << "enter the number of Students ";
-//    int numOfStu;
-//    cin >> numOfStu;
-//    StudentController studentController1;
-//    studentController1.setStudents(numOfStu,All);
-    int chose = 0;
-while(chose != -1) {
+    string chose = "";
+while(chose != "-1") {
     cout << "enter 1 to add new student " << endl
          << "enter 2 to modify grade for a student  " << endl
          << "enter 3 to delete a student  " << endl
          << "enter 4 to print  student with their grades " << endl
             << "enter -1 to quit " << endl;
-
-
     cin >> chose;
-    if (chose == 1) {
+    if (chose == "1") {
         cout << "enter num of student to add ";
-        int x;
-        cin >> x;
-        studentController1.addStudents(x, All);
-    } else if (chose == 2) {
+        string x;
+        while(cin >> x){
+            bool valid = isValidNumber(x);
+            if(!valid){
+                cout << "\nPlease enter a valid number : ";
+            }else{
+                break;
+            }
+        }
+        studentController1.addStudents(stoi(x), All);
+    } else if (chose == "2") {
         cout << "enter Bench number of the student  to modify ";
-        int x;
-        cin >> x;
-        studentController1.ModifyStudent(x);
-    } else if (chose == 3) {
-        cout << "enter  Bench number of student to delete ";
-        int x;
-        cin >> x;
-        studentController1.DeleteStudent(x);
-    } else if (chose == 4) {
+        string x;
+        while(cin >> x){
+            bool valid = isValidNumber(x);
+            if(!valid){
+                cout << "\nPlease enter a valid number : ";
+            }else{
+                break;
+            }
+        }
+        studentController1.ModifyStudent(stoi(x));
+    } else if (chose == "3") {
+        cout << "enter Bench number of the student to delete : ";
+        string x;
+        while(cin >> x){
+            bool valid = isValidNumber(x);
+            if(!valid){
+                cout << "\nPlease enter a valid number : ";
+            }else{
+                break;
+            }
+        }
+        studentController1.DeleteStudent(stoi(x));
+    } else if (chose == "4") {
         studentController1.PrintStuWGrade();
+    }else{
+        cout << "\nPlease enter a valid option\n\n";
     }
 }
     vector<Student> resultedStudets(studentController1.getStudents());

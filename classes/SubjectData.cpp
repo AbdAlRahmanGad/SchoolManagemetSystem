@@ -13,7 +13,6 @@ int SubjectData::getGrade() const {
 
 void SubjectData::setGrade(int grade) {
     SubjectData::grade = grade;
-//    subDefinition.
 }
 
 SubjectData::SubjectData(int g, SubjectDefinition subDef) {
